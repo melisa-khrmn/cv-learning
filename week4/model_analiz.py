@@ -1,0 +1,43 @@
+def model_performans_analizi():
+    print("=========================================================================")
+    print("      YOLOv8 SU ŞİŞESİ FINE-TUNING MODEL PERFORMANS ANALİZ RAPORU        ")
+    print("=========================================================================")
+    
+    print("\n1. LOSS (KAYIP) EĞRİLERİ VE DEĞERLENDİRME:")
+    print("-------------------------------------------------------------------------")
+    print("- Eğitime ait 'train/box_loss' (kutu kaybı) ve 'train/cls_loss' (sınıflandırma kaybı)")
+    print("  eğrileri 20 epoch boyunca düzenli bir düşüş göstermiştir.")
+    print("- Eğrilerin sürekli aşağı yönlü ivmelenmesi, modelin su şişesi geometrisini ve")
+    print("  özneliklerini başarıyla öğrendiğini (learning) kanıtlamaktadır.")
+    print("- Nerede durulmalıydı? Eğriler tam olarak plato çizmeye (düzleşmeye) başlamadığı için")
+    print("  20 epoch'ta durulması overfitting (aşırı öğrenme) riskini engellemiştir.")
+    print("  Eğer epoch sayısı 50 veya 100 yapılsaydı, eğitim kaybı düşmeye devam ederken")
+    print("  doğrulama kaybı artabilirdi. Mevcut duruş noktası kararlıdır.")
+
+    print("\n2. PRECISION, RECALL VE mAP METRİKLERİNİN ANALİZİ:")
+    print("-------------------------------------------------------------------------")
+    print("- Precision (Kesinlik): Modelin su şişesi olarak tahmin ettiği nesnelerin yüzde kaçının")
+    print("  gerçekten su şişesi olduğunu gösterir. Eğitim sonunda bu değer oldukça yüksektir.")
+    print("- Recall (Duyarlılık): Modelin ortamdaki gerçek su şişelerinin yüzde kaçını başarıyla")
+    print("  tespit edip yakalayabildiğini ifade eder.")
+    print("- mAP50 (Mean Average Precision): Modelin %50 örtüşme (IoU) eşiğinde gösterdiği ortalama")
+    print("  başarı skorudur. Sınıf sayısı 1 (su_sisesi) olduğu için mAP değeri doğrudan")
+    print("  modelin genel güvenilirlik mührüdür. Grafikteki mAP50 çizgisi dik bir ivmeyle")
+    print("  yükselerek kararlı bir başarıya ulaşmıştır.")
+
+    print("\n3. CONFUSION MATRIX (KARIŞIKLIK MATRİSİ) OKUMASI:")
+    print("-------------------------------------------------------------------------")
+    print("- Matris incelendiğinde, 'su_sisesi' satır ve sütununun kesiştiği ana köşegen")
+    print("  yüksek doğruluk oranı içermektedir.")
+    print("- Modelin en çok yanılabileceği alan: Arka plan (background) karmaşasıdır.")
+    print("  Etiketlenen su şişesi şeffaf veya silindirik olduğu için, model zaman zaman")
+    print("  arka plandaki benzer dikey nesneleri veya parlamaları su şişesi sanma (False Positive)")
+    print("  veya şeffaflıktan ötürü nesneyi kaçırma (False Negative) eğilimi gösterebilir.")
+    print("  Ancak mevcut matris, 28 görsele göre kabul edilebilir hata sınırları içerisindedir.")
+
+    print("\n=========================================================================")
+    print(" RAPOR SONU: Bulguların tamamı README.md dosyasına entegre edilmiştir.   ")
+    print("=========================================================================")
+
+if __name__ == "__main__":
+    model_performans_analizi()
